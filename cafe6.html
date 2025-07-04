@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CatchACup - Chill. Sip. Connect.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --cream: #F3E9DC;
+      --caramel: #C08552;
+      --brownie: #5E3023;
+      --coffee: #895737;
+      --text-light: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--cream);
+      color: var(--brownie);
+    }
+
+    header {
+      background: var(--coffee);
+      color: var(--text-light);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+
+    nav a {
+      color: var(--text-light);
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background-color: var(--text-light);
+      left: 0;
+      bottom: -4px;
+      transition: 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      height: 90vh;
+      background: url('A_landing_page_digital_illustration_and_graphic_de.png') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+    }
+
+    .hero h2 {
+      font-size: 3.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero button {
+      background: var(--caramel);
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .hero button:hover {
+      background: var(--brownie);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 3rem 2rem;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-around;
+    }
+
+    .card {
+      background: var(--cream);
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem;
+      flex: 1 1 260px;
+      text-align: center;
+    }
+
+    .menu-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-popup .content {
+      background: white;
+      color: var(--brownie);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .menu-popup .menu-category {
+      margin-bottom: 2rem;
+    }
+
+    .menu-category h3 {
+      margin-bottom: 0.5rem;
+      color: var(--coffee);
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .menu-item i {
+      margin-right: 0.5rem;
+      color: var(--coffee);
+    }
+
+    .close-btn {
+      background: var(--caramel);
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    form {
+      background: var(--cream);
+      padding: 2rem;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    input, textarea {
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button[type="submit"] {
+      background: var(--coffee);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      background: var(--brownie);
+      color: white;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CatchACup</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#why">Why Us</a>
+      <a onclick="document.querySelector('.menu-popup').style.display = 'flex';">Menu</a>
+      <a href="#partner">Partner</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Chill. Sip. Connect.</h2>
+    <p>A perfect place for your squad to catch up, study, or chill with your favorite cup.</p>
+    <button onclick="document.getElementById('partner').scrollIntoView({behavior: 'smooth'})">Become a Partner</button>
+  </section>
+
+  <section class="section" id="about">
+    <h2 style="text-align:center;">About CatchACup</h2>
+    <p style="text-align:center; max-width: 750px; margin:auto; margin-top: 1rem;">
+      CatchACup is your local neighborhood café designed especially for casual hangouts, campus catchups, and creative sparks. Affordable coffee, great ambiance, and the perfect vibe for studies, conversations, or chill evenings.
+    </p>
+  </section>
+
+  <section class="section" id="why">
+    <h2 style="text-align:center; margin-bottom:2rem;">Why CatchACup?</h2>
+    <div class="features">
+      <div class="card">
+        <h3>Affordable Menus</h3>
+        <p>Combo deals and pricing designed to keep your energy (and wallet) happy.</p>
+      </div>
+      <div class="card">
+        <h3>Creative Corners</h3>
+        <p>Study pods, laptop zones, and cozy corners that feel like home.</p>
+      </div>
+      <div class="card">
+        <h3>Community Events</h3>
+        <p>Open mic nights, club meetups, and creative jams all under one roof.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="menu-popup"> 
+  <div class="content">
+    <h2 style="text-align:center;">☕ Ménu </h2>
+
+    <div class="menu-category">
+      <h3>☕ Brew Bar</h3>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Classic Cappuccino</span><span>₹90</span></div>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Iced Americano</span><span>₹80</span></div>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Hazelnut Latte</span><span>₹110</span></div>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Cold Brew (Glass Bottle)</span><span>₹120</span></div>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Mocha Frappe</span><span>₹130</span></div>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Espresso Shot (Double)</span><span>₹60</span></div>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Vanilla Cold Coffee</span><span>₹90</span></div>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Caramel Macchiato</span><span>₹130</span></div>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Filter Kaapi</span><span>₹70</span></div>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Turkish Coffee (Mini)</span><span>₹100</span></div>
+    </div>
+
+    <div class="menu-category">
+      <h3>🧋 Catch-A-Coolers</h3>
+      <div class="menu-item"><span><i class="fas fa-ice-cream"></i> Berry Lemon Fizz</span><span>₹90</span></div>
+      <div class="menu-item"><span><i class="fas fa-ice-cream"></i> Mango Mint Iced Tea</span><span>₹85</span></div>
+      <div class="menu-item"><span><i class="fas fa-ice-cream"></i> Kokum Cooler</span><span>₹75</span></div>
+      <div class="menu-item"><span><i class="fas fa-ice-cream"></i> Cold Cocoa Shake</span><span>₹100</span></div>
+      <div class="menu-item"><span><i class="fas fa-ice-cream"></i> Rose Mojito</span><span>₹95</span></div>
+      <div class="menu-item"><span><i class="fas fa-ice-cream"></i> Peach Iced Tea</span><span>₹85</span></div>
+      <div class="menu-item"><span><i class="fas fa-ice-cream"></i> Lychee Chill Fizz</span><span>₹90</span></div>
+      <div class="menu-item"><span><i class="fas fa-ice-cream"></i> Cucumber Mint Sparkle</span><span>₹75</span></div>
+      <div class="menu-item"><span><i class="fas fa-ice-cream"></i> Virgin Sangria</span><span>₹100</span></div>
+    </div>
+
+    <div class="menu-category">
+      <h3>🍝 Easy Italian</h3>
+      <div class="menu-item"><span><i class="fas fa-pizza-slice"></i> Mini White Sauce Pasta</span><span>₹100</span></div>
+      <div class="menu-item"><span><i class="fas fa-pizza-slice"></i> Arrabbiata Red Pasta Bowl</span><span>₹110</span></div>
+      <div class="menu-item"><span><i class="fas fa-pizza-slice"></i> Garlic Bread with Dip</span><span>₹60</span></div>
+      <div class="menu-item"><span><i class="fas fa-pizza-slice"></i> Cheesy Veg Lasagna (Mini)</span><span>₹130</span></div>
+      <div class="menu-item"><span><i class="fas fa-pizza-slice"></i> Mushroom Alfredo Pasta</span><span>₹120</span></div>
+      <div class="menu-item"><span><i class="fas fa-pizza-slice"></i> Pesto Paneer Sandwich</span><span>₹90</span></div>
+      <div class="menu-item"><span><i class="fas fa-pizza-slice"></i> Cheesy Corn Nacho Bowl</span><span>₹100</span></div>
+      <div class="menu-item"><span><i class="fas fa-pizza-slice"></i> Veg Bruschetta Trio</span><span>₹85</span></div>
+    </div>
+
+    <div class="menu-category">
+      <h3>🍜 Indo-Chinese</h3>
+      <div class="menu-item"><span><i class="fas fa-utensils"></i> Veg Hakka Noodles Cup</span><span>₹90</span></div>
+      <div class="menu-item"><span><i class="fas fa-utensils"></i> Manchurian Dry (6 pcs)</span><span>₹100</span></div>
+      <div class="menu-item"><span><i class="fas fa-utensils"></i> Paneer Chilli Tossed (Single Bowl)</span><span>₹120</span></div>
+      <div class="menu-item"><span><i class="fas fa-utensils"></i> Spring Roll (4 pcs)</span><span>₹80</span></div>
+      <div class="menu-item"><span><i class="fas fa-utensils"></i> Chilli Garlic Maggi</span><span>₹65</span></div>
+      <div class="menu-item"><span><i class="fas fa-utensils"></i> Tandoori Momos (5 pcs)</span><span>₹90</span></div>
+      <div class="menu-item"><span><i class="fas fa-utensils"></i> Fried Rice Box</span><span>₹100</span></div>
+      <div class="menu-item"><span><i class="fas fa-utensils"></i> Schezwan Paneer Pockets</span><span>₹110</span></div>
+    </div>
+
+    <div class="menu-category">
+      <h3>🍛 Indian Street Plates</h3>
+      <div class="menu-item"><span><i class="fas fa-hamburger"></i> Aloo Tikki Burger with Mint Mayo</span><span>₹75</span></div>
+      <div class="menu-item"><span><i class="fas fa-hamburger"></i> Chole Kulcha (2 pcs)</span><span>₹95</span></div>
+      <div class="menu-item"><span><i class="fas fa-hamburger"></i> Mini Pav Bhaji</span><span>₹90</span></div>
+      <div class="menu-item"><span><i class="fas fa-hamburger"></i> Paneer Tikka Wrap</span><span>₹110</span></div>
+      <div class="menu-item"><span><i class="fas fa-hamburger"></i> Masala Fries Plate</span><span>₹70</span></div>
+      <div class="menu-item"><span><i class="fas fa-hamburger"></i> Mini Rajma Chawal Bowl</span><span>₹80</span></div>
+      <div class="menu-item"><span><i class="fas fa-hamburger"></i> Tandoori Kulcha Pocket</span><span>₹95</span></div>
+      <div class="menu-item"><span><i class="fas fa-hamburger"></i> Spicy Dabeli Burger</span><span>₹70</span></div>
+      <div class="menu-item"><span><i class="fas fa-hamburger"></i> Mini Masala Dosa Rolls</span><span>₹90</span></div>
+    </div>
+
+    <div class="menu-category">
+      <h3>🍞 Light Bites</h3>
+      <div class="menu-item"><span><i class="fas fa-bread-slice"></i> Chilli Cheese Garlic Toast</span><span>₹70</span></div>
+      <div class="menu-item"><span><i class="fas fa-bread-slice"></i> Peri Peri Maggi Bowl</span><span>₹65</span></div>
+      <div class="menu-item"><span><i class="fas fa-bread-slice"></i> Mini Veg Grilled Sandwich</span><span>₹85</span></div>
+      <div class="menu-item"><span><i class="fas fa-bread-slice"></i> Nachos with Cheese Dip</span><span>₹80</span></div>
+      <div class="menu-item"><span><i class="fas fa-bread-slice"></i> Cheese Burst Pockets</span><span>₹80</span></div>
+      <div class="menu-item"><span><i class="fas fa-bread-slice"></i> Tandoori Corn Toasties</span><span>₹85</span></div>
+      <div class="menu-item"><span><i class="fas fa-bread-slice"></i> Spinach & Corn Sandwich</span><span>₹90</span></div>
+      <div class="menu-item"><span><i class="fas fa-bread-slice"></i> Baked Samosa with Dip</span><span>₹60</span></div>
+    </div>
+
+    <div class="menu-category">
+      <h3>🍩 Sweet Stuff</h3>
+      <div class="menu-item"><span><i class="fas fa-cookie"></i> Chocolate Lava Shot</span><span>₹60</span></div>
+      <div class="menu-item"><span><i class="fas fa-cookie"></i> Brownie Bites (2 pcs)</span><span>₹70</span></div>
+      <div class="menu-item"><span><i class="fas fa-cookie"></i> Belgian Waffle (Mini)</span><span>₹90</span></div>
+      <div class="menu-item"><span><i class="fas fa-cookie"></i> Banoffee Jar</span><span>₹100</span></div>
+      <div class="menu-item"><span><i class="fas fa-cookie"></i> Cinnamon Roll</span><span>₹75</span></div>
+      <div class="menu-item"><span><i class="fas fa-cookie"></i> Oreo Shot Jar</span><span>₹70</span></div>
+      <div class="menu-item"><span><i class="fas fa-cookie"></i> Gulkand Cream Roll</span><span>₹75</span></div>
+      <div class="menu-item"><span><i class="fas fa-cookie"></i> Chocolate Fudge Bar</span><span>₹65</span></div>
+      <div class="menu-item"><span><i class="fas fa-cookie"></i> Fruit Custard Cup</span><span>₹80</span></div>
+    </div>
+
+    <div class="menu-category">
+      <h3>💸 CatchA Combos (₹99–₹149)</h3>
+      <div class="menu-item"><span><i class="fas fa-mug-hot"></i> Coffee + Fries</span><span>₹120</span></div>
+      <div class="menu-item"><span><i class="fas fa-glass-martini-alt"></i> Mojito + Maggi Bowl</span><span>₹140</span></div>
+      <div class="menu-item"><span><i class="fas fa-mug-hot"></i> Latte + Garlic Bread</span><span>₹130</span></div>
+      <div class="menu-item"><span><i class="fas fa-glass-martini-alt"></i> Cooler + Spring Rolls</span><span>₹130</span></div>
+      <div class="menu-item"><span><i class="fas fa-glass-martini-alt"></i> Iced Tea + White Pasta</span><span>₹149</span></div>
+      <div class="menu-item"><span><i class="fas fa-hamburger"></i> Burger + Coke Float</span><span>₹130</span></div>
+      <div class="menu-item"><span><i class="fas fa-burrito"></i> Wrap + Masala Chai</span><span>₹120</span></div>
+      <div class="menu-item"><span><i class="fas fa-pizza-slice"></i> Pasta + Cooler</span><span>₹145</span></div>
+      <div class="menu-item"><span><i class="fas fa-coffee"></i> Cold Coffee + Fries</span><span>₹110</span></div>
+    </div>
+
+    <p style="text-align:center; font-size: 0.9rem; margin-top: 1rem; color: #555;">
+      All items are grab-and-go friendly.<br>
+      Reusable cups & straws available for dine-in.<br>
+      Add-ons like syrups (+₹10), extra cheese (+₹15), oat/almond milk (+₹15).
+    </p>
+
+    <button class="close-btn" onclick="document.querySelector('.menu-popup').style.display = 'none';">Close Menu</button>
+  </div>
+</div>
+
+
+  <section class="section" id="partner">
+    <h2 style="text-align:center; margin-bottom:2rem;">Partner with CatchACup</h2>
+    <form action="mailto:partner@catchacup.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <input type="text" name="subject" placeholder="Franchise / Career Interest" required />
+      <textarea name="message" rows="5" placeholder="Tell us why you'd love to partner or work with us!" required></textarea>
+      <button type="submit">Send Inquiry</button>
+    </form>
+    <p style="text-align:center; margin-top:1rem; color: #777;">
+      📍 101 Campus Lane, Knowledge Park III, Greater Noida - 201306
+    </p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CatchACup. Brews coffee, builds community.</p>
+  </footer>
+
+</body>
+</html>
